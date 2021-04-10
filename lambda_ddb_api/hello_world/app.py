@@ -1,33 +1,16 @@
 import json
 
+from flask_lambda import FlaskLambda
 
-def lambda_handler(event, context):
-    """Sample pure Lambda function
+app = FlaskLambda(__name__)
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
-
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
+@app.route('/hello')
+def index():
+    data = {
+        "message": "Hello world"
+    }
     return {
-        "statusCode": 200,
-        "body": json.dumps(
-            {
-                "message": "hello world",
-            }
-        ),
+        json.dumps(data),
+        200,
+        {'content-Type': "application/json"}
     }
