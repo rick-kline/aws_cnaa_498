@@ -2,40 +2,86 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
   python3.8
-
   Sample SAM Template for lambda_ddb_api
-
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 3
 
 Resources:
-  HelloWorldFunction:
+  EnergyUsageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "energy_usage"
+      AttributeDefinitions:
+        - AttributeName: "meterId"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "meterId"
+          KeyType: "HASH"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+  
+  EnergyUsageFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       PackageType: Image
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName:
+              !Ref EnergyUsageTable
       Events:
+        EnergyUsage:
+          Type: Api 
+          Properties:
+            Path: /
+            Method: get
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /hello
             Method: get
+        ListMeters:
+          Type: Api
+          Properties:
+            Path: /meters
+            Method: get
+        PutMeter:
+          Type: Api
+          Properties:
+            Path: /meters
+            Method: post
+        GetMeter:
+          Type: Api
+          Properties:
+            Path: /meters/{meterId}/
+            Method: get
+        PatchMeter:
+          Type: Api
+          Properties:
+            Path: /meters/{meterId}/
+            Method: patch
+        DeleteMeter:
+          Type: Api
+          Properties:
+            Path: /meters/{meterId}/
+            Method: delete
     Metadata:
       Dockerfile: Dockerfile
       DockerContext: ./hello_world
-      DockerTag: python3.8-v1
-
+      DockerTag: python3.8-v1  
+      
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+  EnergyUsageApi:
+    Description: "API Gateway endpoint URL for Prod stage for Energy Usage function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  EnergyUsageFunction:
+    Description: "Energy Usage Lambda Function ARN"
+    Value: !GetAtt EnergyUsageFunction.Arn
+  EnergyUsageFunctionIamRole:
+    Description: "Implicit IAM Role created for Energy Usage function"
+    Value: !GetAtt EnergyUsageFunctionRole.Arn
