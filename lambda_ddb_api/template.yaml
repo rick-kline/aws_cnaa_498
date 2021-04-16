@@ -12,17 +12,18 @@ Resources:
   EnergyUsageTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: "energy_usage"
-      AttributeDefinitions:
-        - AttributeName: "meterId"
-          AttributeType: "N"
-      KeySchema:
-        - AttributeName: "meterId"
-          KeyType: "HASH"
+      TableName: energy_usage
       ProvisionedThroughput:
-        ReadCapacityUnits: "5"
-        WriteCapacityUnits: "5"
-  
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      AttributeDefinitions: 
+        - 
+          AttributeName: meterId
+          AttributeType: S
+      KeySchema: 
+        - 
+          AttributeName: meterId
+          KeyType: HASH
   EnergyUsageFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
