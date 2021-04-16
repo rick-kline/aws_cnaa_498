@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "lambda-ddb-api"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1jqi9t1ineb0i"
+s3_prefix = "lambda-ddb-api"
+region = "us-east-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = ["EnergyUsageFunction=133803608902.dkr.ecr.us-east-2.amazonaws.com/lambda_ddb_repo"]
