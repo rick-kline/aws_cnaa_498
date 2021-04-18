@@ -70,7 +70,7 @@ Resources:
             Method: delete
     Metadata:
       Dockerfile: Dockerfile
-      DockerContext: ./hello_world
+      DockerContext: lambda_ddb_api/hello_world
       DockerTag: python3.8-v1  
       
 Outputs:
