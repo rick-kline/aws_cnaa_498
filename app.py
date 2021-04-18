@@ -11,10 +11,6 @@ table = ddb.Table('energy_usage')
 def index():
     return json_response({"message": "Energy Usage Planning"})
     
-@app.route('/hello')
-def hello():
-    return json_response({"message": "hello world!"})
-    
 @app.route('/meters', methods=['GET', 'POST'])
 def put_list_meters():
     if request.method == 'GET':
