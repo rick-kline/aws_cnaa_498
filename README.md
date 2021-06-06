@@ -13,3 +13,4 @@ Cloud native ML application build
 
 
 
+![serverless_etl_data_staging](https://user-images.githubusercontent.com/64938088/120934516-8ad86e80-c6cc-11eb-96dc-024abd7aa555.PNG)
