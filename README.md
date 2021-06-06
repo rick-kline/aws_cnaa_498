@@ -13,7 +13,7 @@ Due to the size and availability of the required data, the solution focuses on t
 <br>II. Data Sources
 Two primary data sources have been secured with continued, intermittent data extraction from DataMiner2 API, the API provided by PJM RTO and historical and current weather data sourced for the API provided on openweathermap.org.  
 <br>
-<b>II. Functional / Technical Specification</b>
+<b>III. Functional / Technical Specification</b>
 <br>
 <br> As noted in the diagram below, the operational data store and data pipeline is responsible for extracting the data from the APIs and persisyting that data in Dynamo DB an AWS NoSQL db. Two primary lambda functions pull data from the APIs passing the extracted data to the final API responsible for interacting with the DynamoDB one table architecture. The lambdas responsible for sourcing the data are triggered by cloudwatch events at appropriate times of the day when additional data is available. These two lambdas triger the CRUD lambda as final processing to load the data via eithe a PUT or UPDATE operation. 
 <br>
@@ -23,9 +23,9 @@ Two primary data sources have been secured with continued, intermittent data ext
 <br>
 <br>![serverless_etl_data_staging](https://user-images.githubusercontent.com/64938088/120934516-8ad86e80-c6cc-11eb-96dc-024abd7aa555.PNG)
 
-<br>III. Modeling & Inference
+<br><b>IV. Modeling & Inference</b>
 <br> The jupyter notebook, (DUQ-Demand-Planning) available in this repository demostrates the consumption of the data available in the Athena serverless datawarehouse for the purpose of data preparation and model construction. Initially the data is prepared and a model is constructed manually taking into acccount the quadratic relationship between temperature and energy demand and also the interactions between energy demand by month and season, day of week and hour of day. The manually constructed model generates a MAPE for out of sample prediction of 10.0. Much nore could be done from a modeling perspective toimprove accuracy. Finally, the data is prepared for in a Sagemaker, AutoML / AutoPilot model development. The Autopilot experiment is created and executed in JupyterLab via Sagemaker Studio. The resulting model is deployed with an model endpoint created. Also shown in the notebook is the invocation of enpoint to request predictions for the out-of-sample- test data withheld from the training data. Noted in the notebook, the autoML generated model produces a MAPE of approximately 20.    
 
 
-<br>IV. Conclusion
+<br><b>V. Conclusion</b>
 <br> This project demostrates an end-to-end cloud native serverless ML application build utilizing AWS Cloud native tools, functionality and services. The solution utilizes AWS lambda functions to source API data and interact with dynamoDB in building an operational data store. The data is further extracted and transformed for use by AWS Glue crawlers, AWS Gle jobs and the AWS Glue data catalog. The data is presented to the end user via AWS Athena serverless database / warehouse constructed on S3 data. Finally an AutoPilot XGboost model is created and deployed along with an endpoint allowing for prediction request. Both the manually created model and the AutoPilot model are in need of improvement however the model building process in both cases has provide considerable insight regarding how each might be improved.    
