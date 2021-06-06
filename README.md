@@ -1,7 +1,7 @@
 # LSE Demand Planning
 Cloud native ML application build
 
-I. Introduction
+<b>I. Introduction<b>
 <br>Electric Utilities or load serving entities (LSE) are responsible for providing load or energy demand forecast up to seven days into the future. The higher the accuracy, the more acurrately the regional transmission operators, (RTOs) can manage the overall transmission and electricty grid. In addition to contributing to grid safety and management, accurate forcast allow for better planning, better internal load management, reduced risk, informed whole sale energy purchase and sales and appropriate risk management and hedging related to supply and demand. While there are a multitude of factors to be consider better energy forecasting and demand planning by load serving entities can lead to increased profit, safety and customer care. 
 
 There has been considerable research in the area of demand planning for LSEs and it should be noted that load forecasting is not a trivial exercise requiring considerable public and private data to achieve high accuracy. This project does not attempt to achieve the levels of accuracy that may be provided by more robust or commercial solutions, instead the goal of this project is to demonstrate an end to end, cloud native serverless MVP solution allowing for short term demand forcast using tools and services available on the Amazon Web Services platform.
