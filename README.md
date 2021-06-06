@@ -24,6 +24,8 @@ Two primary data sources have been secured with continued, intermittent data ext
 <br>![serverless_etl_data_staging](https://user-images.githubusercontent.com/64938088/120934516-8ad86e80-c6cc-11eb-96dc-024abd7aa555.PNG)
 
 <br>III. Modeling & Inference
+<br> The jupyter notebook, (DUQ-Demand-Planning) available in this repository demostrates the consumption of the data available in the Athena serverless datawarehouse for the purpose of data preparation and model construction. Initially the data is prepared and a model is constructed manually taking into acccount the quadratic relationship between temperature and energy demand and also the interactions between energy demand by month and season, day of week and hour of day. The manually constructed model generates a MAPE for out of sample prediction of 10.0. Much nore could be done from a modeling perspective toimprove accuracy. Finally, the data is prepared for in a Sagemaker, AutoML / AutoPilot model development. The Autopilot experiment is created and executed in JupyterLab via Sagemaker Studio. The resulting model is deployed with an model endpoint created. Also shown in the notebook is the invocation of enpoint to request predictions for the out-of-sample- test data withheld from the training data. Noted in the notebook, the autoML generated model produces a MAPE of approximately 20.    
 
 
 <br>IV. Conclusion
+<br> 
