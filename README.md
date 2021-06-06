@@ -8,7 +8,7 @@ There has been considerable research in the area of demand planning for LSEs and
 
 Due to the size and availability of the required data, the solution focuses on the PJM RTO territory and specifically the DUQ zone of Duquesne Light Company LSE as shown in the graphic below. Duquesne Light serves energy loads in Pittsburge, PA and surrounding areas.
 
-
+![pjm_duq_territory](https://user-images.githubusercontent.com/64938088/120936066-ebb77500-c6d3-11eb-85bb-bff83be3ad8e.PNG)
 
 II. Data Sources
 Two primary data sources have been secured with continued, intermittent data extraction from DataMiner2 API, the API provided by PJM RTO and historical and current weather data sourced for the API provided on openweathermap.org.  
