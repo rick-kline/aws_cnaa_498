@@ -28,4 +28,4 @@ Two primary data sources have been secured with continued, intermittent data ext
 
 
 <br>IV. Conclusion
-<br> 
+<br> This project demostrates an end-to-end cloud native serverless ML application build utilizing AWS Cloud native tools, functionality and services. The solution utilizes AWS lambda functions to source API data and interact with dynamoDB in building an operational data store. The data is further extracted and transformed for use by AWS Glue crawlers, AWS Gle jobs and the AWS Glue data catalog. The data is presented to the end user via AWS Athena serverless database / warehouse constructed on S3 data. Finally an AutoPilot XGboost model is created and deployed along with an endpoint allowing for prediction request. Both the manually created model and the AutoPilot model are in need of improvement however the model building process in both cases has provide considerable insight regarding how each might be improved.    
