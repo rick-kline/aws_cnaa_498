@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "energy-weather-lmp-tbl-crud-stack"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1jqi9t1ineb0i"
+s3_prefix = "energy-weather-lmp-tbl-crud-stack"
+region = "us-east-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
